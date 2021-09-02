@@ -1,22 +1,24 @@
-apiVersion: skaffold/v2beta12
+apiVersion: skaffold/v2beta5
 kind: Config
 metadata:
-  name: k-s-demo-app--
+  name: k-s-demo-app
 build:
   artifacts:
   - image: eduk8s-labs-w02-s204-registry.springone2021-49e5522.tanzu-labs.esp.vmware.com/apps/demo
     buildpacks:
-      builder: docker.io/paketobuildpacks/builder:base
+      builder: gcr.io/paketo-buildpacks/builder:base-platform-api-0.3
       dependencies:
         paths:
-        - src
-        - pom.xml
+          - src
+          - pom.xml
 deploy:
-  kubectl:
-    manifests:
-    - k8s/deployment.yaml
-    - k8s/service.yaml
-    - k8s/ingress.yaml
+  kustomize:
+    paths: ["kustomize/base"]
+profiles:
+  - name: qa
+    deploy:
+      kustomize:
+        paths: ["kustomize/qa"]
 portForward:
 - resourceType: service
   resourceName: k8s-demo-app 
