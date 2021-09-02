@@ -36,7 +36,11 @@ spec:
                 - sh
                 - '-c'
                 - sleep 10
-        envFrom:
-          - configMapRef:
-              name: log-level
+        volumeMounts:
+          - name: config-volume
+            mountPath: /workspace/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: k8s-demo-app-config
 status: {}

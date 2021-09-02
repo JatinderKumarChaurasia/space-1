@@ -5,3 +5,7 @@ resources:
 - service.yaml
 - deployment.yaml
 - ingress.yaml
+configMapGenerator:
+  - name: k8s-demo-app-config
+    files:
+      - application.yaml
