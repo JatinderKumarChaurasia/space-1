@@ -14,6 +14,7 @@
 	<name>k8s-demo-app</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
+<spring-boot.build-image.imageName>eduk8s-labs-w02-s204-registry.springone2021-49e5522.tanzu-labs.esp.vmware.com/apps/demo</spring-boot.build-image.imageName>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
