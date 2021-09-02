@@ -1,0 +1,24 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+metadata:
+  name: k-s-demo-app--
+build:
+  artifacts:
+  - image: eduk8s-labs-w02-s204-registry.springone2021-49e5522.tanzu-labs.esp.vmware.com/apps/demo
+    buildpacks:
+      builder: docker.io/paketobuildpacks/builder:base
+      dependencies:
+        paths:
+        - src
+        - pom.xml
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yaml
+    - k8s/service.yaml
+    - k8s/ingress.yaml
+portForward:
+- resourceType: service
+  resourceName: k8s-demo-app 
+  port: 80
+  localPort: 4503
