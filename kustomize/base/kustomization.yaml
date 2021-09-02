@@ -4,6 +4,7 @@ kind: Kustomization
 resources:    
 - service.yaml
 - deployment.yaml
+- https://github.com/ryanjbaxter/k8s-spring-workshop/name-service/kustomize/base
 - ingress.yaml
 configMapGenerator:
   - name: k8s-demo-app-config
