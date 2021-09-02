@@ -36,4 +36,7 @@ spec:
                 - sh
                 - '-c'
                 - sleep 10
+        envFrom:
+          - configMapRef:
+              name: log-level
 status: {}
